@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Rotator</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <iframe id="websiteFrame" width="100%" height="100%" style="border: none;"></iframe>
+    <script>
+        var websites = [
+            {url: "https://toonsutra.com", open: true},
+            {url: "https://pwa.toonsutra.com", open: true},
+            {url: "https://inside.toonsutra.com", open: true}
+        ];
+        var currentWebsite = 0;
+
+        function loadWebsite() {
+            var frame = document.getElementById("websiteFrame");
+            frame.src = websites[currentWebsite].url;
+            if (websites[currentWebsite].open) {
+                frame.style.display = "block";
+            } else {
+                frame.style.display = "none";
+            }
+            currentWebsite = (currentWebsite + 1) % websites.length;
+        }
+
+        function startRotation() {
+            setInterval(loadWebsite, 10000); // Load a new website every 10 seconds (adjust as needed)
+        }
+
+        startRotation();
+    </script>
+</body>
+</html>
+
